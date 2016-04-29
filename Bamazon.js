@@ -11,12 +11,14 @@ var showProducts = function(){
 	connection.query('select ItemId,ProductName,Price from bamazon.Products', function(err,result){
 		if(err) throw err; 
 
+		var startPrompt = false;		
+		   result.forEach(function(row) {
+          console.log(JSON.stringify(row, null, 2));
 		
-		console.log(result); 
-		
-
+		startPrompt=true;
 	}); 
 	
+	if(startPrompt)
 
 		prompt.start() 
 		prompt.get(ItemId,stockQTY, function (err,result){
@@ -28,7 +30,7 @@ var showProducts = function(){
 			start=false 
 			showProducts();
 		});
-	} 
+	}); 
 
 
 var purchaseCheck = function(itemid,quantity){
